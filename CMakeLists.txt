@@ -21,7 +21,7 @@ endif()
 set(CMAKE_C_COMPILER "cc")
 set(CMAKE_C_FLAGS "-std=c2x")
 
-add_executable(server main.c)
+add_executable(server server.c)
 add_executable(client raygui.h client.h client_gui.c)
 
 target_link_libraries(client raylib m)

@@ -5,14 +5,6 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
-/*
- Server:
-
- - Create
- - Bind
- - Listen
- - Accept
-*/
 
 void print_errono_exit(const char *step)
 {

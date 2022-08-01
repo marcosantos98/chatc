@@ -22,6 +22,6 @@ set(CMAKE_C_COMPILER "cc")
 set(CMAKE_C_FLAGS "-std=c2x -Wextra -Wpedantic -Wall")
 
 add_executable(server server.c)
-add_executable(client raygui.h client.h client_gui.c)
+add_executable(client raygui.h client.h client.c chatc.c)
 
 target_link_libraries(client raylib m)

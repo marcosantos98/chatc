@@ -42,7 +42,18 @@ void start_server(int socket_port)
     struct sockaddr_in client_socket = {0};
     int client_socket_sz = sizeof(client_socket);
 
-    TRY(accept(sock, (struct sockaddr *)&client_socket, (socklen_t *)&client_socket_sz), "Client Connect", "Client Connected", false);
+    int client_sock = TRY(accept(sock, (struct sockaddr *)&client_socket, (socklen_t *)&client_socket_sz), "Client Connect", "Client Connected", false);
+
+    char buf[1028]= {0};
+
+    int read_bytes = TRY(read(client_sock, &buf, 1028), "Read", "Success read", false);
+    
+    printf("Read %d of bytes with: %s\n", read_bytes, buf);
+
+    const char* handshake = "Hi Client";
+    int send_bytes = TRY(send(client_sock, handshake, strlen(handshake), 0), "Send", "Success Send", false);
+
+    printf("Send %d bytes\n", send_bytes);
 
     TRY(shutdown(sock, SHUT_RDWR), "Shutdown", "Success shutdown.", false);
 
